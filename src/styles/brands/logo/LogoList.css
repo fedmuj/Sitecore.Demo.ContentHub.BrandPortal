@@ -1,0 +1,11 @@
+.logo-list {
+  @apply grid grid-cols-4 gap-16 mt-8;
+
+  li {
+    @apply flex flex-col;
+
+    img {
+      @apply w-full h-auto m-auto basis-full object-contain;
+    }
+  }
+}

@@ -1,0 +1,71 @@
+.rich-text {
+  * {
+    @apply leading-8;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    @apply mt-5 mb-3;
+  }
+
+  h1 {
+    @apply !text-4xl font-bold text-blue;
+  }
+
+  h2 {
+    @apply text-3xl font-semibold;
+  }
+
+  h3 {
+    @apply !text-2xl !font-semibold !text-black;
+  }
+
+  h4 {
+    @apply text-xl uppercase font-semibold;
+  }
+
+  h5 {
+    @apply text-xl font-semibold text-black-lightest;
+  }
+
+  h6 {
+    @apply text-lg uppercase font-semibold text-black-lightest mb-0;
+  }
+
+  ul,
+  ol {
+    @apply list-outside mb-8;
+  }
+
+  ul {
+    @apply list-disc;
+
+    li::marker {
+      @apply text-blue;
+    }
+  }
+
+  ol {
+    @apply list-decimal;
+
+    li::marker {
+      @apply font-bold;
+    }
+  }
+
+  li {
+    @apply ml-9 mb-1;
+
+    > p {
+      @apply pl-3 mb-2;
+    }
+  }
+
+  a {
+    @apply text-blue underline;
+  }
+}

@@ -1,0 +1,27 @@
+.bottom-nav {
+  @apply w-full flex justify-center gap-6 p-6 my-20 bg-white;
+
+  svg {
+    @apply flex-shrink-0 w-10 h-16 text-blue;
+  }
+
+  a {
+    @apply flex gap-8 items-center basis-full;
+
+    &:first-child {
+      @apply justify-end;
+
+      &:last-child {
+        @apply justify-center;
+      }
+    }
+  }
+
+  .bottom-nav-category {
+    @apply block uppercase text-gray-dark text-lg;
+  }
+
+  .bottom-nav-title {
+    @apply text-gray-dark font-semibold text-3xl;
+  }
+}

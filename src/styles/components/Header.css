@@ -1,0 +1,7 @@
+header {
+  @apply px-14 py-6;
+
+  .header-logo {
+    @apply flex gap-4;
+  }
+}

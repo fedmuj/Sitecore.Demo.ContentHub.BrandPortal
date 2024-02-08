@@ -1,0 +1,19 @@
+.collection-grid {
+  @apply grid grid-cols-4 gap-x-4 gap-y-8;
+
+  li {
+    @apply flex flex-col;
+
+    .collection-description {
+      @apply !mb-0;
+    }
+  }
+
+  .collection-image-container {
+    @apply w-full h-72 bg-white-light;
+
+    img {
+      @apply w-full h-full object-contain;
+    }
+  }
+}

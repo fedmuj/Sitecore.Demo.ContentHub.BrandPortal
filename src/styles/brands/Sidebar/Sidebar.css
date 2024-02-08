@@ -1,0 +1,64 @@
+.brand-sidebar {
+  @apply text-xl pt-5;
+
+  .logo {
+    @apply mb-8;
+  }
+
+  &-container {
+    @apply sticky top-5;
+  }
+
+  .brand-preview {
+    @apply flex flex-col items-center gap-4 bg-white p-5 mb-5;
+
+    &-content {
+      @apply text-black-light;
+
+      table {
+        td {
+          @apply align-top;
+
+          &:first-child {
+            @apply font-semibold pr-7;
+          }
+        }
+      }
+    }
+  }
+
+  &-nav {
+    &-section {
+      button {
+        @apply w-full flex justify-between items-center font-semibold text-blue border-b-4 border-blue py-2;
+
+        svg {
+          @apply w-5 h-5 transition-transform;
+        }
+      }
+
+      ul {
+        @apply hidden p-5;
+      }
+
+      &.expanded {
+        button {
+          svg {
+            @apply rotate-180;
+          }
+        }
+        ul {
+          @apply block;
+        }
+      }
+    }
+
+    &-link {
+      @apply mb-2;
+
+      .active {
+        @apply text-blue;
+      }
+    }
+  }
+}

@@ -1,0 +1,48 @@
+.brands-listing {
+  @apply relative text-center py-8;
+
+  &::before,
+  &::after {
+    @apply content-[''] absolute top-0 w-64 h-80 bg-play-element bg-contain bg-no-repeat;
+  }
+
+  &::before {
+    @apply left-0;
+  }
+
+  &::after {
+    @apply right-0 -scale-x-100 scale-y-100;
+  }
+
+  .container {
+    @apply relative z-10;
+  }
+
+  h1 {
+    @apply max-w-5xl mx-auto text-6xl font-black uppercase;
+  }
+
+  h6 {
+    @apply max-w-7xl mx-auto text-xl uppercase mb-4;
+  }
+
+  .logo {
+    @apply mb-8 mx-auto;
+  }
+
+  &-grid {
+    @apply flex flex-wrap justify-center max-w-6xl mb-8 mx-auto;
+
+    &-item {
+      @apply p-8 pb-0 w-1/4;
+
+      img {
+        @apply h-56 w-auto object-contain mx-auto;
+      }
+
+      h5 {
+        @apply text-3xl font-bold;
+      }
+    }
+  }
+}

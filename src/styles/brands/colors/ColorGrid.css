@@ -1,0 +1,19 @@
+.color-grid {
+  @apply grid grid-cols-2 w-full gap-16 mt-5 mb-9;
+
+  &-item {
+    @apply flex flex-col;
+  }
+
+  .color-box {
+    @apply w-full h-36;
+  }
+
+  .color-hex-code {
+    @apply text-lg text-gray-dark uppercase;
+  }
+
+  .color-description {
+    @apply text-xl;
+  }
+}

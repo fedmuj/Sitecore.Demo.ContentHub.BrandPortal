@@ -1,0 +1,11 @@
+.button-download {
+  @apply flex gap-3 justify-center items-center text-lg text-blue transition-colors self-end;
+
+  svg {
+    @apply w-5 h-5;
+  }
+
+  &:hover {
+    @apply text-black;
+  }
+}

@@ -1,0 +1,7 @@
+.personality-grid {
+  @apply grid grid-cols-3 gap-10;
+
+  h3 {
+    @apply mb-4;
+  }
+}

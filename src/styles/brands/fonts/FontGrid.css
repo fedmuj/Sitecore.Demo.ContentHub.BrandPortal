@@ -1,0 +1,11 @@
+.font-grid {
+  @apply grid grid-cols-2 gap-x-9 gap-y-16;
+
+  &-item {
+    @apply flex flex-col;
+
+    img {
+      @apply w-full h-auto;
+    }
+  }
+}

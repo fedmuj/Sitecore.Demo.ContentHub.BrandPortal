@@ -1,0 +1,54 @@
+@import './base/buttons.css';
+@import './base/typography.css';
+
+html,
+body,
+#__next {
+  @apply h-full w-full;
+}
+
+#__next {
+  @apply flex flex-col;
+}
+
+main {
+  @apply grow;
+}
+
+body {
+  @apply overflow-x-hidden;
+}
+
+.guideline-page-layout {
+  @apply pt-5;
+
+  * {
+    @apply leading-8;
+  }
+
+  section {
+    @apply mb-8 text-xl;
+  }
+
+  h1 {
+    @apply text-3xl font-semibold text-blue mb-5;
+
+    &:not(:first-child) {
+      @apply mt-8;
+    }
+  }
+
+  h3 {
+    @apply text-xl font-semibold text-gray-dark mt-5;
+  }
+
+  p {
+    &:not(:last-child):not(.asset-label) {
+      @apply mb-5;
+    }
+  }
+
+  .asset-label {
+    @apply text-xl font-bold text-black-lightest my-2;
+  }
+}

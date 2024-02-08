@@ -1,0 +1,11 @@
+.brand-not-found {
+  @apply flex min-h-screen flex-col items-center p-24;
+
+  h2 {
+    @apply text-3xl mb-1;
+  }
+
+  a {
+    @apply text-blue;
+  }
+}
