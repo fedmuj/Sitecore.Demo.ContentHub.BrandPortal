@@ -153,6 +153,53 @@ const brandGuidelineFields = `
   brandSecondaryFont: brandGuidelineToSecondaryFont (first: 100) {
     ${brandFont}
   }
+  tenantPromotions: promotions(orderBy:ENDDATE_DESC, first: 100) {
+    __typename
+    total
+    results {
+      __typename
+      id
+      name
+      opportunityValue
+      startDate
+      enddate
+      sessionsTypeToSessions {
+        taxonomyLabel
+      }
+      sessionToMasterAsset {
+        total
+        results {
+          __typename
+          title
+          assetToPublicLink {
+            results {
+              __typename
+              relativeUrl
+              versionHash
+              resource
+            }
+          }
+        }
+      }
+      ownedMediaType {
+        taxonomyLabel
+      }
+      shopping {
+        results {
+          taxonomyLabel
+        }
+      }
+      sessionToAffMediaType {
+        taxonomyLabel
+      }
+      affiliateMedia {
+        results {
+          taxonomyLabel
+        }
+      }      
+    }
+  }
+  
 `;
 
 const brandGuidelinesQuery = `
@@ -188,10 +235,11 @@ const getBrandGuidelineByIdQuery = (id: string) => `
 
 export const getBrandGuidelineById = async (id: string): Promise<BrandGuideline | null> => {
   try {
+    console.log("id " + id)
     const brandGuidelineResponse: BrandGuidelineResponse = (await fetchGraphQL(
       getBrandGuidelineByIdQuery(id)
     )) as BrandGuidelineResponse;
-
+    console.log(brandGuidelineResponse.data.demo_BrandGuideline.brandGuidelineName)
     return brandGuidelineResponse.data.demo_BrandGuideline;
   } catch {
     return null;

@@ -6,8 +6,8 @@ import Header from './components/Header';
 const saira = Saira({ subsets: ['latin'] });
 
 export const metadata: Metadata = {
-  title: 'PLAY! Brands Portal',
-  description: 'A one-stop-shop for all PLAY! Brand Guidelines',
+  title: 'LamdaDev Tenants Portal',
+  description: 'A one-stop-portal for all LamdaDev Campaigns and Content',
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {

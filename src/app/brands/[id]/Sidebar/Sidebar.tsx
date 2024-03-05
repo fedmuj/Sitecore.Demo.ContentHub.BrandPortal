@@ -7,44 +7,20 @@ import Link from 'next/link';
 export default function Sidebar({ brandGuideline }: { brandGuideline: BrandGuideline | null }) {
   const SIDEBAR_DATA = [
     {
-      sectionName: 'Visual Identity',
+      sectionName: 'Marketing Campaigns',
       sectionItems: [
         {
-          itemName: 'Brand Basics',
+          itemName: 'Promotions List',
           itemSlug: '',
-        },
-        {
-          itemName: 'Brand Colors',
-          itemSlug: 'colors',
-        },
-        {
-          itemName: 'Brand Logo',
-          itemSlug: 'logo',
-        },
-        {
-          itemName: 'Typography',
-          itemSlug: 'fonts',
-        },
+        }
       ],
     },
-    {
-      sectionName: 'Corporate Messaging',
-      sectionItems: [
-        {
-          itemName: 'Mission, Vision and Purpose',
-          itemSlug: 'mission',
-        },
-        {
-          itemName: 'Personality Characteristics',
-          itemSlug: 'personality',
-        },
-      ],
-    },
+    
     {
       sectionName: 'Resources',
       sectionItems: [
         {
-          itemName: 'Brand Assets',
+          itemName: 'Tenant Assets',
           itemSlug: 'assets',
         },
         {
@@ -60,15 +36,7 @@ export default function Sidebar({ brandGuideline }: { brandGuideline: BrandGuide
   return (
     <aside className="brand-sidebar" aria-label="Sidebar">
       <div className="brand-sidebar-container">
-        <Link href={'/'}>
-          <Image
-            src="/brands-portal-logo-dark.svg"
-            alt="PLAY! Brands Portal"
-            width={430}
-            height={65}
-            className="logo"
-          />
-        </Link>
+
         <BrandPreview brandGuideline={brandGuideline} />
         <nav>
           <ul className="brand-sidebar-nav">

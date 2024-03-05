@@ -3,6 +3,8 @@ import BottomNav from '@/app/components/BottomNav';
 import { BrandGuideline } from '@/interfaces/brandGuideline';
 import { notFound } from 'next/navigation';
 import PersonalityGrid from './PersonalityGrid';
+import { TableHead, TableRow, TableHeader, TableCell, TableBody, Table } from "@/components/ui/table"
+import { Button } from "@/components/ui/button"
 
 export default async function BrandPersonality({ params }: { params: { id: string } }) {
   const brandGuideline = await getBrandGuidelineById(params.id);
@@ -12,27 +14,70 @@ export default async function BrandPersonality({ params }: { params: { id: strin
   const characteristics = brandGuideline.brandPersonalityCharacteristics.results;
 
   return (
-    <main className="guideline-page-layout">
-      <section>
-        {!!characteristics.length && (
-          <>
-            <h1>Explore the characteristics of our brand personality</h1>
-            <PersonalityGrid characteristics={characteristics} />
-          </>
-        )}
-      </section>
-
-      <BottomNav
-        hasPrevious
-        previousCategory="Corporate Messaging"
-        previousTitle="Mission, Vision and Purpose"
-        previousLink={`/brands/${brandGuideline.id}/mission`}
-        hasNext
-        nextCategory="Resources"
-        nextTitle="Brand Assets"
-        nextLink={`/brands/${brandGuideline.id}/assets`}
-      />
-    </main>
+    <Table>
+      <TableHeader>
+        <TableRow>
+          <TableHead className="w-[150px]">Campaign</TableHead>
+          <TableHead>Start</TableHead>
+          <TableHead>End</TableHead>
+          <TableHead>Target</TableHead>
+          <TableHead>Status</TableHead>
+          <TableHead>Action</TableHead>
+        </TableRow>
+      </TableHeader>
+      <TableBody>
+        <TableRow>
+          <TableCell className="font-medium">Summer Sale</TableCell>
+          <TableCell>Jun 15, 2023</TableCell>
+          <TableCell>Jul 15, 2023</TableCell>
+          <TableCell>Newsletter Subscribers</TableCell>
+          <TableCell>Active</TableCell>
+          <TableCell>
+            <Button size="sm">See Details</Button>
+          </TableCell>
+        </TableRow>
+        <TableRow>
+          <TableCell className="font-medium">Back to School</TableCell>
+          <TableCell>Aug 1, 2023</TableCell>
+          <TableCell>Sep 1, 2023</TableCell>
+          <TableCell>Students & Parents</TableCell>
+          <TableCell>Scheduled</TableCell>
+          <TableCell>
+            <Button size="sm">See Details</Button>
+          </TableCell>
+        </TableRow>
+        <TableRow>
+          <TableCell className="font-medium">Fall Fashion</TableCell>
+          <TableCell>Sep 15, 2023</TableCell>
+          <TableCell>Oct 15, 2023</TableCell>
+          <TableCell>Fashion Enthusiasts</TableCell>
+          <TableCell>Paused</TableCell>
+          <TableCell>
+            <Button size="sm">See Details</Button>
+          </TableCell>
+        </TableRow>
+        <TableRow>
+          <TableCell className="font-medium">Holiday Cheer</TableCell>
+          <TableCell>Nov 1, 2023</TableCell>
+          <TableCell>Dec 1, 2023</TableCell>
+          <TableCell>Seasonal Shoppers</TableCell>
+          <TableCell>Inactive</TableCell>
+          <TableCell>
+            <Button size="sm">See Details</Button>
+          </TableCell>
+        </TableRow>
+        <TableRow>
+          <TableCell className="font-medium">New Year New You</TableCell>
+          <TableCell>Jan 1, 2024</TableCell>
+          <TableCell>Feb 1, 2024</TableCell>
+          <TableCell>Health & Wellness Seekers</TableCell>
+          <TableCell>Scheduled</TableCell>
+          <TableCell>
+            <Button size="sm">See Details</Button>
+          </TableCell>
+        </TableRow>
+      </TableBody>
+    </Table>
   );
 }
 

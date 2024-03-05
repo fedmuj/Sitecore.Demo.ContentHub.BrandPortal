@@ -45,8 +45,30 @@ export interface BrandGuideline {
   brandSecondaryFont: {
     results: BrandGuidelineFont[];
   };
+  tenantPromotions:{
+    results:TenantPromotions[];    
+  }
 }
 
+export interface TenantPromotions {
+  id:string;
+  name:string;
+  opportunityValue:number;
+  startDate:Date;
+  enddate:Date;
+  ownedMediaType:Taxonomy;
+  sessionToAffMediaType:Taxonomy;
+  sessionToMasterAsset:{
+    results:MasterAsset[]
+  }
+  shopping:{
+    results:Taxonomy[]
+  };
+  sessionsTypeToSessions:Taxonomy;
+  affiliateMedia:{
+    results:Taxonomy[]
+  };
+}
 export interface BrandGuidelineColor {
   id: string;
   brandGuidelineColorName: string;
@@ -79,7 +101,9 @@ export interface PublicLink {
   versionHash: string;
   resource: string;
 }
-
+export interface Taxonomy {
+  taxonomyLabel: Record<string, string>;
+}
 export interface PersonalityCharacteristic {
   id: string;
   title: Record<string, string>;

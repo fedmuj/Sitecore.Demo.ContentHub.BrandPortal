@@ -1,83 +1,84 @@
 import { getAllBrandGuidelines, getBrandGuidelineById } from '@/api/queries/getBrandGuidelines';
-import BottomNav from '@/app/components/BottomNav';
-import RichText from '@/app/components/RichText';
-import { BrandGuideline } from '@/interfaces/brandGuideline';
+import Filter from '@/app/components/Filter';
+import { Button } from '@/components/ui/button';
+import {
+  Table,
+  TableBody,
+  TableCell,
+  TableHead,
+  TableHeader,
+  TableRow,
+} from '@/components/ui/table';
+import Link from 'next/link';
 import { notFound } from 'next/navigation';
 
 export default async function BrandBasics({ params }: { params: { id: string } }) {
   const brandGuideline = await getBrandGuidelineById(params.id);
+  console.log(params.id);
 
+  const today = new Date();
   if (!brandGuideline) return notFound();
 
-  const isBasicElementsSectionVisible =
-    brandGuideline.brandGuidelineCreativeFramework ||
-    brandGuideline.brandGuidelineTaglineUse ||
-    brandGuideline.brandGuidelinePhotographyUse;
-
-  const isCoBrandingSectionVisible = brandGuideline.coBranding1 || brandGuideline.coBranding2;
-
+  brandGuideline.tenantPromotions;
   return (
-    <main className="brand-basics guideline-page-layout">
-      <section>
-        <h1>Main Description</h1>
-        <RichText html={brandGuideline.brandGuidelineDescription} />
-      </section>
-      {isBasicElementsSectionVisible && (
-        <section>
-          <h1>Basic Elements</h1>
-          {brandGuideline.brandGuidelineCreativeFramework && (
-            <div>
-              <h3>Creative framework</h3>
-              <RichText html={brandGuideline.brandGuidelineCreativeFramework} />
-            </div>
-          )}
-          {brandGuideline.brandGuidelineTaglineUse && (
-            <div>
-              <h3>Tagline use</h3>
-              <RichText html={brandGuideline.brandGuidelineTaglineUse} />
-            </div>
-          )}
-          {brandGuideline.brandGuidelinePhotographyUse && (
-            <div>
-              <h3>Photography use</h3>
-              <RichText html={brandGuideline.brandGuidelinePhotographyUse} />
-            </div>
-          )}
-        </section>
-      )}
-      {isCoBrandingSectionVisible && (
-        <section>
-          <h1>Co-Branding</h1>
-          {brandGuideline.coBranding1 && (
-            <div>
-              <h3>Introduction</h3>
-              <RichText html={brandGuideline.coBranding1} />
-            </div>
-          )}
-          {brandGuideline.coBranding2 && (
-            <div>
-              <h3>Details</h3>
-              <RichText html={brandGuideline.coBranding2} />
-            </div>
-          )}
-        </section>
-      )}
-      <section className="brand-basics-bottom-nav">
-        <BottomNav
-          hasNext
-          nextCategory="Visual Identity"
-          nextTitle="Brand Colors"
-          nextLink={`/brands/${brandGuideline.id}/colors`}
-        />
-      </section>
-    </main>
+    <div>
+      <Filter></Filter>
+      <Table>
+        <TableHeader>
+          <TableRow>
+            <TableHead className="w-[150px]">Campaign Name</TableHead>
+            <TableHead>Start Date</TableHead>
+            <TableHead>End Date</TableHead>
+            <TableHead>Type</TableHead>
+            <TableHead>Opportunity Value Generated</TableHead>
+            <TableHead>Status</TableHead>
+            <TableHead>Action</TableHead>
+          </TableRow>
+        </TableHeader>
+        <TableBody>
+          {brandGuideline.tenantPromotions.results.map((campaign, index) => {
+            // Convert start and end dates from the campaign to Date objects
+            const startDate = new Date(campaign.startDate);
+            const endDate = new Date(campaign.enddate);
+            let href = `/brands/${params.id}/promotion/${campaign.id}`;
+            // Determine campaign status based on current date
+            const status =
+              today >= startDate && today <= endDate
+                ? 'Active'
+                : today > endDate
+                ? 'Finished'
+                : 'Upcoming'; // Assumes a campaign can also be upcoming
+            return (
+              <TableRow key={index}>
+                <TableCell className="font-medium">{campaign.name}</TableCell>
+                <TableCell>
+                  {new Intl.DateTimeFormat('en-GB', {
+                    day: '2-digit',
+                    month: '2-digit',
+                    year: 'numeric',
+                  }).format(new Date(startDate))}
+                </TableCell>
+                <TableCell>
+                  {' '}
+                  {new Intl.DateTimeFormat('en-GB', {
+                    day: '2-digit',
+                    month: '2-digit',
+                    year: 'numeric',
+                  }).format(new Date(endDate))}
+                </TableCell>
+                <TableCell>{campaign.sessionsTypeToSessions.taxonomyLabel['en-US']}</TableCell>
+                <TableCell>{campaign.opportunityValue}€</TableCell>
+                <TableCell>{status}</TableCell>
+                <TableCell>
+                  <Button size="sm">
+                    <Link href={href}>More Details</Link>
+                  </Button>
+                </TableCell>
+              </TableRow>
+            );
+          })}
+        </TableBody>
+      </Table>
+    </div>
   );
-}
-
-export async function generateStaticParams() {
-  const brandGuidelines: BrandGuideline[] = (await getAllBrandGuidelines()) ?? [];
-
-  return brandGuidelines.map((brandGuideline) => ({
-    id: brandGuideline.id,
-  }));
 }
